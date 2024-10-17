@@ -19,7 +19,7 @@ def is_last_message_from_sender(chat_log, sender_name="BreadFruit"):
 icon_x, icon_y = 1248, 1043
 pyautogui.click(icon_x, icon_y)
 # Step 2: Wait for a short duration if needed (allowing time for window to open, etc.)
-time.sleep(2)
+time.sleep(3)
 
 while True:
 
@@ -61,12 +61,11 @@ while True:
 
         # Step 8: Click at the target location (930, 960)
         pyautogui.click(930, 960)
-        time.sleep(2)
+        time.sleep(1)
 
         # Step 9: Paste the text (Ctrl+V or Command+V for Mac)
         pyautogui.hotkey('ctrl', 'v')  # Use 'command' on Mac if necessary
-        time.sleep(2)
-
+        time.sleep(1)
 
         # Step 10: Press Enter to send the message
-        # pyautogui.press('enter')
+        pyautogui.press('enter')
