@@ -3,6 +3,7 @@ import pyautogui
 import time
 import pyperclip
 import openai
+import re
 
 openai.api_key = "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"
 
@@ -12,6 +13,7 @@ def is_last_message_from_sender(chat_log, sender_name="BreadFruit"):
     if sender_name in messages:
         return True
     return False
+
    
 # Step 1: Click on the icon at (1248, 1043)
 icon_x, icon_y = 1248, 1043
@@ -44,22 +46,21 @@ while True:
     print(is_last_message_from_sender(chat_history))
 
     if is_last_message_from_sender(chat_history):
-
-
         completion = openai.ChatCompletion.create(
             model="gpt-4",
             messages=[
-                {"role": "system", "content": "You are a person named purkuti101sagar who speaks Nepali as well as english. You are from Nepal and you are a coder. You analyze chat history and respond in short and simple sentence. Output should be the next chat response (text message only) "},
-                {"role": "system", "content": "Do not start like this [21:02, 12/6/2024] purkuti101sagar:"},
+                {"role": "system", "content": "You are a person named purkuti101sagar who speaks Nepali as well as english. You are from Nepal and you are a coder. You analyze chat history and respond in short and simple sentence. Output should be the next chat response (text message only). Do not start like this [11:30 am, 17/10/2024] purkuti101sagar: "},
+                # {"role": "system", "content": "Do not start like this [11:30 am, 17/10/2024] purkuti101sagar: "},
                 {"role": "user", "content": chat_history}
             ]
         )
 
         response=completion.choices[0].message.content
+            
         pyperclip.copy(response)
 
         # Step 8: Click at the target location (930, 960)
-        pyautogui.click(833, 960)
+        pyautogui.click(930, 960)
         time.sleep(2)
 
         # Step 9: Paste the text (Ctrl+V or Command+V for Mac)
